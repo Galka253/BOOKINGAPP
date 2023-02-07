@@ -33,7 +33,7 @@ const hotelSchema = new schema({
     max: 5,
   },
   rooms: {
-    type: [String],
+    type: [{ type: schema.Types.ObjectId, ref: "Room" }],
   },
 });
 

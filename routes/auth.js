@@ -3,6 +3,8 @@ const User = require("../models/user");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const isAuth = require("../middleware/isAuth");
+const isAdmin = require("../middleware/isAdmin");
+
 //register user
 router.post("/register", async (req, res) => {
   const { firstname, lastname, phone, username, email, password } = req.body;
@@ -49,11 +51,12 @@ router.post("/login", async (req, res) => {
 
 //get auth user
 
-router.get("/users", isAuth, (req, res) => {
-  res.send({ user: req.user });
+router.get("/users", isAuth, isAdmin, async (req, res) => {
+  const list = await User.find();
+  res.send({ msg: "List of users", list });
 });
 //edit user
-router.put("/edit/:_id", async (req, res) => {
+router.put("/edit/:_id", isAuth, async (req, res) => {
   const { _id } = req.params;
   const user = await User.findOneAndUpdate({ _id }, { $set: req.body });
   res.json({ msg: "contact edited", user });

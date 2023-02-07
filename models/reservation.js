@@ -8,9 +8,9 @@ const reservationSchema = new schema({
   days: Number,
   guests: Number,
   createdAt: { type: Date, default: Date.now },
-  user: { type: Schema.Types.ObjectId, ref: "users" },
-  hotel: { type: Schema.Types.ObjectId, ref: "hotels" },
-  room: { type: Schema.Types.ObjectId, ref: "rooms" },
+  user: { type: schema.Types.ObjectId, ref: "User" },
+  hotel: { type: schema.Types.ObjectId, ref: "Hotel" },
+  room: { type: schema.Types.ObjectId, ref: "Room" },
 
   status: { type: String, default: "pending" },
 });

@@ -1,7 +1,7 @@
 const router = require("express").Router();
 //Admin verification
 const Hotel = require("../models/hotel");
-const Room = require("../models/room");
+//const Room = require("../models/room");
 const isAuth = require("../middleware/isAuth");
 const isAdmin = require("../middleware/isAdmin");
 //Create hotel
@@ -34,11 +34,8 @@ router.get("/findAll", async (req, res) => {
 //get rooms in the hotel
 router.get("/room/:id", async (req, res) => {
   const hotel = await Hotel.findById(req.params.id);
-  const list = await Promise.all(
-    hotel.rooms.map((room) => {
-      return Room.findById(room);
-    })
-  );
+
+  res.json({ msg: "Rooms", hotel });
 });
 
 module.exports = router;

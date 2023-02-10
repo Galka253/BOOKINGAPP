@@ -8,7 +8,7 @@ connectDB();
 
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/hotels", require("./routes/hotels"));
-app.use("/api/rooms", require("./routes/rooms"));
+
 app.use("/api/reservations", require("./routes/reservations"));
 
 const port = 6000;

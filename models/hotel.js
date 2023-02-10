@@ -1,6 +1,24 @@
 const mongoose = require("mongoose");
 const schema = mongoose.Schema;
 
+const roomSchema = new schema({
+  title: {
+    type: String,
+    required: true,
+  },
+  price: {
+    type: Number,
+    required: true,
+  },
+  maxPeople: {
+    type: Number,
+    required: true,
+  },
+  adds: {
+    type: String,
+    required: true,
+  },
+});
 const hotelSchema = new schema({
   name: {
     type: String,
@@ -32,9 +50,7 @@ const hotelSchema = new schema({
     min: 0,
     max: 5,
   },
-  rooms: {
-    type: [{ type: schema.Types.ObjectId, ref: "Room" }],
-  },
+  rooms: [roomSchema],
 });
 
 const Hotel = mongoose.model("hotels", hotelSchema);

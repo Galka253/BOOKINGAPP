@@ -18,6 +18,10 @@ const roomSchema = new schema({
     type: String,
     required: true,
   },
+  roomAvailible: {
+    type: Number,
+    required: true,
+  },
 });
 const hotelSchema = new schema({
   name: {

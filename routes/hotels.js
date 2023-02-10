@@ -17,22 +17,23 @@ router.put("/update/:_id", isAuth, isAdmin, async (req, res) => {
   res.json({ msg: "Hotel updated", hotel });
 });
 //Delete hotel
-router.delete("/delete/:id", async (req, res) => {
+router.delete("/delete/:id", isAuth, isAdmin, async (req, res) => {
   await Hotel.findByIdAndDelete(req.params.id);
   res.json({ msg: "Hotel has been deleted" });
 });
 //Get hotel
-router.get("/find/:id", async (req, res) => {
+router.get("/find/:id", isAuth, isAdmin, async (req, res) => {
   const hotel = await Hotel.findById(req.params.id);
   res.json({ msg: "Hotel is found", hotel });
 });
 //Get all hotels
-router.get("/findAll", async (req, res) => {
+router.get("/findAll", isAuth, isAdmin, async (req, res) => {
   const list = await Hotel.find();
   res.json({ msg: "List of hotels", list });
 });
-//get rooms in the hotel
-router.get("/room/:id", async (req, res) => {
+//get  hotel by id
+
+router.get("/room/:id", isAuth, isAdmin, async (req, res) => {
   const hotel = await Hotel.findById(req.params.id);
 
   res.json({ msg: "Rooms", hotel });

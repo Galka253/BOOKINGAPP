@@ -61,5 +61,10 @@ router.put("/edit/:_id", isAuth, async (req, res) => {
   const user = await User.findOneAndUpdate({ _id }, { $set: req.body });
   res.json({ msg: "contact edited", user });
 });
+//get auth user
+
+router.get("/user", isAuth, (req, res) => {
+  res.send({ user: req.user });
+});
 
 module.exports = router;

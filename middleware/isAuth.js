@@ -1,7 +1,7 @@
 const User = require("../models/user");
 var jwt = require("jsonwebtoken");
 const isAuth = async (req, res, next) => {
-  const token = await req.headers["authorization"];
+  const token = await req.headers["auth"];
   if (!token) {
     return res.send({ msg: "No token!" });
   }
@@ -10,7 +10,7 @@ const isAuth = async (req, res, next) => {
 
   const user = await User.findById(decoded.id);
   if (!user) {
-    return res.send({ msg: "user dosnt exxisrt" });
+    return res.send({ msg: "user doesn't exist" });
   }
   req.user = user;
 
